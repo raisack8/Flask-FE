@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block contents %}
+    <h1>FE試験対策</h1>
+    <hr>
+    <div>
+        <input type="checkbox" id="scales" name="scales" checked>
+        <label for="scales">一問一答</label>
+    </div>
+    <button>
+        用語→説明
+    </button>
+    <details>
+        <summary>試験範囲選択</summary>
+        <button>全選択</button>
+        <button>全解除</button>
+        <div>
+            <input type="checkbox" id="scales" name="scales" checked>
+            <label for="scales">第1章</label>
+        </div>
+    </details>
+    <a href="{{url_for('test')}}">Start</a>
+    <a href="{{url_for('registration')}}">登録</a>
+    <a href="{{url_for('q_list')}}">一覧</a>
+{% endblock %}

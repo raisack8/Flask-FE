@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block contents %}
+    <h1>テスト</h1>
+    <hr>
+    <form action="#" method="post">
+        {{num}}
+        {{target}}
+    </form>
+    <a href="{{ url_for('top') }}">トップへ戻る</a>
+{% endblock %}

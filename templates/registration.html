@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block contents %}
+    <h1>登録画面</h1>
+    <hr>
+    <form action="#" method="post">
+        <p>用語：<br>
+        <input type="text" name="keyword" size="15" value="{{input_val_dict['keyword']}}" autofocus="True"></p>
+        {% if error_flag['keyword'] %}
+            ※入力してください
+        {% endif %}
+
+        <p>説明：<br>
+        <textarea name="explain" rows="7">{{input_val_dict['explain']}}</textarea >
+        {% if error_flag['explain'] %}
+            ※入力してください
+        {% endif %}
+
+        <p>章選択：
+        <select name="chapter" size="1">
+            <option value="default">--選択してください--</option>
+            {% for index in range(0,20) %}
+            <option value="{{ loop.index }}">{{ loop.index }}</option>
+            {% endfor %}
+        </select>
+        {% if error_flag['chapter'] %}
+            ※入力してください
+        {% endif %}
+
+        <p>その他：<br>
+        <textarea name="comment" rows="7">{{input_val_dict['comment']}}</textarea >
+        </p>
+        <button type="summit">登録</button>
+    </form>
+    <a href="{{ url_for('top') }}">戻る</a>
+{% endblock %}
