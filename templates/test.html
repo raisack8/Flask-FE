@@ -3,8 +3,27 @@
     <h1>テスト</h1>
     <hr>
     <form action="#" method="post">
-        {{num}}
-        {{target}}
+        <p>Q.</p>
+        <p>{{ target.explain }}</p>
+        <hr>
+        <p
+            v-on:click="toggleBtn"
+            style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">回答(ｸﾘｯｸ!)</p>
+        <div v-if="toggle">
+            <p>■■■■■■■■■■■■■</p>
+            <p>■■■  ????????????  ■■■</p>
+            <p>■■■■■■■■■■■■■■■■■</p>
+        </div>
+        <section v-else>
+            <div>
+                <p>A.</p>
+                <p>{{ target.keyword }}</p>
+                <p>コメント：{{ target.comment }}</p>
+                <button type="summit" name="correct" value="{{target.id}}">正解</button>
+                <button type="summit" name="incorrect" value="{{target.id}}">不正解</button>
+            </div>
+        </section>
     </form>
+
     <a href="{{ url_for('top') }}">トップへ戻る</a>
 {% endblock %}

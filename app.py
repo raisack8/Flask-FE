@@ -69,6 +69,7 @@ def q_list():
 
     edit_id = request.form.get('edit')
     delete_id = request.form.get('delete')
+    count_reset_id = request.form.get('count_reset')
     if request.method == "POST":
         # ---- 編集 ----
         if edit_id != None:
@@ -81,6 +82,12 @@ def q_list():
         # ---- 削除 ----
         if delete_id != None:
             questions.delete_by_id(delete_id)
+        # ---- 回数リセット ----
+        if count_reset_id != None:
+            questions.delete_by_id(delete_id)
+            q = (Question.update({Question.number_of_question:00})
+            .where(Question.id==count_reset_id))
+            q.execute()
     return render_template(
         'q_list.html',
         questions = questions
@@ -94,10 +101,21 @@ def test():
         id_list.append(q.id)
     random_num = random.randint(0, len(id_list) - 1)
     print((random_num))
-    target = questions.get_by_id(int(id_list[random_num])).keyword
+    target = questions.get_by_id(int(id_list[random_num]))
+    current_count = target.number_of_question
+    q = (Question.update({Question.number_of_question:current_count + 1})
+         .where(Question.id==int(target.id)))
+    q.execute()
+    if request.method == "POST":
+        correct_id = request.form.get('correct')
+        correct_model = questions.get_by_id(int(correct_id))
+        correct_count = correct_model.the_number_of_correct_answers
+        q = (Question.update({Question.the_number_of_correct_answers:correct_count + 1})
+         .where(Question.id==int(correct_model.id)))
+        q.execute()
+        print("target"+str(correct_id))
     return render_template(
     'test.html',
-    num = id_list,
     target = target
     )
 

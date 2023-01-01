@@ -8,7 +8,21 @@
     <title>FE試験対策</title>
 </head>
 <body>
-    {% block contents %}
-    {% endblock %}
+    <div id="app">
+        {% block contents %}
+        {% endblock %}
+    </div>
+    <script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            toggle: true
+        },
+        methods:{
+            toggleBtn: function(){
+                this.toggle == true ? this.toggle = false : this.toggle = true
+            }
+        }
+    })</script>
 </body>
 </html>
