@@ -4,7 +4,7 @@ from flask import *
 from peewee import *
 from model import *
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./resource')
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 @app.route("/")
@@ -85,6 +85,9 @@ def q_list():
         if count_reset_id != None:
             questions.delete_by_id(delete_id)
             q = (Question.update({Question.number_of_question:00})
+            .where(Question.id==count_reset_id))
+            q.execute()
+            q = (Question.update({Question.the_number_of_correct_answers:00})
             .where(Question.id==count_reset_id))
             q.execute()
     return render_template(
