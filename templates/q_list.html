@@ -3,33 +3,37 @@
     <h1>問題一覧</h1>
     <hr>
     <form action="#" method="post">
-        <table border="1">
-            <tr>
-                <th></th>
-                <th></th>
-                <th>ID</th>
-                <th>章</th>
-                <th>用語</th>
-                <th>説明</th>
-                <th>出題回数</th>
-                <th>正解数</th>
-                <th>コメント</th>
-                <th></th>
-            </tr>
+        <table border="1" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>ID</th>
+                    <th>章</th>
+                    <th>用語</th>
+                    <th>説明</th>
+                    <th>出題回数</th>
+                    <th>正解数</th>
+                    <th>コメント</th>
+                    <th></th>
+                </tr>
+            </thead>
             {% for question in questions %}
-            <tr>
-                <th><button type="summit" name="edit" value="{{question.id}}">編集</button></th>
-                <th><button type="summit" name="delete" value="{{question.id}}">削除</button></th>
-                <th>{{question.id}}</th>
-                <th>{{question.chapter}}</th>
-                <th>{{question.keyword}}</th>
-                <th>{{question.explain}}</th>
-                <th>{{question.number_of_question}}</th>
-                <th>{{question.the_number_of_correct_answers}}</th>
-                <th>{{question.comment}}</th>
-                <th><button type="summit" name="count_reset" value="{{question.id}}">回数リセット</button></th>
-            </tr>
-            {% endfor %}
+            <tbody>
+                <tr>
+                    <th><button type="summit" name="edit" value="{{question.id}}">編集</button></th>
+                    <th><button type="summit" name="delete" value="{{question.id}}">削除</button></th>
+                    <th>{{question.id}}</th>
+                    <th>{{question.chapter}}</th>
+                    <th>{{question.keyword}}</th>
+                    <th>{{question.explain}}</th>
+                    <th>{{question.number_of_question}}</th>
+                    <th>{{question.the_number_of_correct_answers}}</th>
+                    <th>{{question.comment}}</th>
+                    <th><button type="summit" name="count_reset" value="{{question.id}}">回数リセット</button></th>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </form>
     <a href="{{ url_for('top') }}">トップへ戻る</a>
