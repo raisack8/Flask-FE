@@ -3,7 +3,6 @@ import random
 from flask import *
 from peewee import *
 from model import *
-import tkinter.messagebox as messagebox
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
