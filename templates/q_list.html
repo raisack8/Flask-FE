@@ -2,6 +2,8 @@
 {% block contents %}
     <h1>問題一覧</h1>
     <hr>
+    <a href="{{ url_for('top') }}">トップへ戻る</a>
+    <a href="{{ url_for('registration') }}">登録</a>
     <form action="#" method="post">
         <table border="1" class="table table-bordered">
             <thead>
@@ -37,4 +39,5 @@
         </table>
     </form>
     <a href="{{ url_for('top') }}">トップへ戻る</a>
+    <a href="{{ url_for('registration') }}">登録</a>
 {% endblock %}
