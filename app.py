@@ -10,7 +10,8 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 @app.route("/")
 def top():
     db.connect()
-    return render_template('index.html')
+    print(app.debug)
+    return render_template('index.html', debug = app.debug)
 
 @app.route("/registration", methods=["GET", "POST"])
 def registration():
