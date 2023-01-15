@@ -55,7 +55,7 @@ def q_list():
     questions = Question
     update_form = request.form.get('update')
     if update_form != None:
-        print(f"update_form : {request.form},  {request.form.get('explain')}")
+        # print(f"update_form : {request.form},  {request.form.get('explain')}")
         q = Question.update({Question.keyword:request.form.get('keyword')}).where(Question.id==int(update_form))
         q.execute()
         q = Question.update({Question.explain:request.form.get('explain')}).where(Question.id==int(update_form))
