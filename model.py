@@ -1,7 +1,10 @@
 from peewee import *
 from datetime import datetime, date, timedelta
+from setting import SetDb
 
-db = SqliteDatabase('sample.db')
+db = SqliteDatabase(SetDb.DB)
+
+# db = SqliteDatabase('db_product.db')
 
 
 def initialize():

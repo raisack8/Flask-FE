@@ -2,16 +2,18 @@ import os
 import random
 from flask import *
 from peewee import *
-from model import *
+from setting import SetDb
 
 app = Flask(__name__, static_folder='./resource')
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+SetDb.set_db(app.debug)
+
+from model import *
 
 @app.route("/")
 def top():
     db.connect()
-    print(app.debug)
-    return render_template('index.html', debug = app.debug)
+    return render_template('index.html', dbStr = SetDb.DB)
 
 @app.route("/registration", methods=["GET", "POST"])
 def registration():

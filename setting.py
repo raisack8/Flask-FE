@@ -32,3 +32,11 @@ class Production(Development):
     MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
     MYSQL_PORT = os.getenv("MYSQL_PORT")
     MYSQL_DATABASE = os.getenv("MYSQL_DATABASE")
+
+class SetDb:
+    DB = 'db_debug.db'
+    def set_db(bool):
+        if bool:
+            SetDb.DB = 'db_debug.db'
+        else:
+            SetDb.DB = 'db_product.db'
