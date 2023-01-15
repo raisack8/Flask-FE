@@ -1,23 +1,46 @@
 {% extends "base.html" %}
 {% block contents %}
-    <h1>テスト</h1>
+{% set testBool = true %}
+    {% if testBool %}
+        <h1>テスト:用語→説明</h1>
+    {% else %}
+        <h1>テスト:説明→用語</h1>
+    {% endif %}
     <hr>
     <form action="#" method="post">
-        <p>Q.</p>
-        <p>{{ target.explain }}</p>
-        <hr>
-        <div v-if="toggle">
-            <img src="../resource/secretBox.png" width="480" height="160" v-on:click="toggleBtn">
-        </div>
-        <section v-else>
-            <div>
-                <p>A.</p>
-                <p>{{ target.keyword }}</p>
-                <p>コメント：{{ target.comment }}</p>
-                <button type="summit" name="correct" value="{{target.id}}">正解</button>
-                <button type="summit" name="incorrect" value="{{target.id}}">不正解</button>
+        {% if testBool %}
+            <p>Q.</p>
+            <p>{{ target.keyword }}</p>
+            <hr>
+            <div v-if="toggle">
+                <img src="../resource/secretBox.png" v-on:click="toggleBtn">
             </div>
-        </section>
+            <section v-else>
+                <div>
+                    <p>A.</p>
+                    <p>{{ target.explain }}</p>
+                    <p>コメント：{{ target.comment }}</p>
+                    <button type="summit" name="correct" value="{{target.id}}">正解</button>
+                    <button type="summit" name="incorrect" value="{{target.id}}">不正解</button>
+                </div>
+            </section>
+        {% else %}
+            <p>Q.</p>
+            <p>{{ target.explain }}</p>
+            <hr>
+            <div v-if="toggle">
+                <img src="../resource/secretBox.png" width="480" height="160" v-on:click="toggleBtn">
+            </div>
+            <section v-else>
+                <div>
+                    <p>A.</p>
+                    <p>{{ target.keyword }}</p>
+                    <p>コメント：{{ target.comment }}</p>
+                    <button type="summit" name="correct" value="{{target.id}}">正解</button>
+                    <button type="summit" name="incorrect" value="{{target.id}}">不正解</button>
+                </div>
+            </section>
+        {% endif %}
     </form>
 
     <a href="{{ url_for('top') }}">トップへ戻る</a>

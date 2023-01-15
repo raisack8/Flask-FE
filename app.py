@@ -110,12 +110,13 @@ def test():
     q.execute()
     if request.method == "POST":
         correct_id = request.form.get('correct')
-        correct_model = questions.get_by_id(int(correct_id))
-        correct_count = correct_model.the_number_of_correct_answers
-        q = (Question.update({Question.the_number_of_correct_answers:correct_count + 1})
-         .where(Question.id==int(correct_model.id)))
-        q.execute()
-        print("target"+str(correct_id))
+        if correct_id:
+            correct_model = questions.get_by_id(int(correct_id))
+            correct_count = correct_model.the_number_of_correct_answers
+            q = (Question.update({Question.the_number_of_correct_answers:correct_count + 1})
+            .where(Question.id==int(correct_model.id)))
+            q.execute()
+            print("target"+str(correct_id))
     return render_template(
     'test.html',
     target = target
