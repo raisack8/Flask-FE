@@ -125,5 +125,12 @@ def test():
     target = target
     )
 
+@app.route("/download", methods=["GET"])
+def download_api():
+    filepath = "./db_product.db"
+    filename = os.path.basename(filepath)
+    return send_file(filepath, as_attachment=True,
+                     mimetype='text/plain')
+
 if __name__ == "__main__":
     app.run()
