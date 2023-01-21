@@ -2,28 +2,34 @@
 {% block contents %}
     <h1 class="text-blue-300">FE試験対策</h1>
     <hr>
-    <div class="mb-3">
-        <input type="checkbox" id="scales" name="scales" checked>
-        <label for="scales">一問一答</label>
-    </div>
-    <div class="mb-3">
-        <button>
-            説明→用語
-        </button>
-    </div>
-    <div class="mb-3">
-        <details>
-            <summary>試験範囲選択</summary>
-            <button>全選択</button>
-            <button>全解除</button>
-            {% for i in range(0,20) %}
+    <form method="post" action="">
+        <div class="mb-3">
+            <input type="checkbox" id="scales" name="scales" checked>
+            <label for="scales">一問一答</label>
+        </div>
+        <div class="mb-3">
+            <button name="chenge_mode" value="chenge_mode">
+                {{ test_mode }}
+            </button>
+        </div>
+        <div class="mb-3">
+            <details>
+                <summary>試験範囲選択</summary>
+                <label v-on:click="AllChoise">全選択</label>
+                <label v-on:click="AllRelease">全解除</label>
+                {% for i in range(0,20) %}
                 <div>
-                    <input type="checkbox" id="section_{{ loop.index }}" name="section" checked>
+                    <input type="checkbox"
+                    id="section_{{ loop.index }}"
+                    name="section_{{ loop.index }}"
+                    v-model="checked[{{ i }}]">
                     <label for="section">第{{ loop.index }}章</label>
                 </div>
-            {% endfor %}
-        </details>
-    </div>
+                {% endfor %}
+            </details>
+        </div>
+        <button type="submit" name="start_btn" value="start">Start</button>
+    </form>
     <a href="{{url_for('test')}}">Start</a>
     <a href="{{url_for('registration')}}">登録</a>
     <a href="{{url_for('q_list')}}">一覧</a>

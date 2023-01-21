@@ -1,14 +1,10 @@
 {% extends "base.html" %}
 {% block contents %}
 {% set testBool = true %}
-    {% if testBool %}
-        <h1>テスト:用語→説明</h1>
-    {% else %}
-        <h1>テスト:説明→用語</h1>
-    {% endif %}
+    <h1>テスト:{{test_mode}}</h1>
     <hr>
     <form action="#" method="post">
-        {% if not testBool %}
+        {% if test_mode == "用語→説明" %}
             <p>Q.</p>
             <p>{{ target.keyword }}</p>
             <hr>
@@ -44,4 +40,5 @@
     </form>
 
     <a href="{{ url_for('top') }}">トップへ戻る</a>
+    <p>現在選択している章　: {{current_selected_chapter}}</p>
 {% endblock %}

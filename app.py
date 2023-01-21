@@ -3,17 +3,38 @@ import random
 from flask import *
 from peewee import *
 from setting import SetDb
+from test_info import *
 
 app = Flask(__name__, static_folder='./resource')
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 SetDb.set_db(app.debug)
 
 from model import *
+test_info=TestInfo()
 
-@app.route("/")
+
+@app.route("/", methods=["GET", "POST"])
 def top():
+    if request.method == "POST":
+        start_id = request.form.get('start_btn')
+        change_mode_id = request.form.get('chenge_mode')
+        section_list = []
+        if start_id:
+            for i in range(1,21):
+                request_str = "section_"+str(i)
+                request_result = request.form.get(request_str)
+                if request_result:
+                    section_list.append(i)
+            test_info.set_sec(section_list)
+            return redirect(url_for('test'))
+        if change_mode_id:
+            test_info.change_mode()
     db.connect()
-    return render_template('index.html', dbStr = SetDb.DB)
+    return render_template(
+        'index.html',
+        dbStr = SetDb.DB ,
+        test_mode = test_info.get_mode()
+        )
 
 @app.route("/registration", methods=["GET", "POST"])
 def registration():
@@ -102,11 +123,28 @@ def q_list():
 def test():
     questions = Question
     id_list = []
-    for q in questions:
-        id_list.append(q.id)
-    random_num = random.randint(0, len(id_list) - 1)
-    print((random_num))
-    target = questions.get_by_id(int(id_list[random_num]))
+
+    # チェックボックスのチェックに応じて章を絞る
+    for capter in test_info.get_sec():
+        for q in Question.get_specific_chapter(capter):
+            id_list.append(q.id)
+    if len(id_list) == 0:
+        for q in questions:
+            id_list.append(q.id)
+
+    # DBからランダムな問題を持ってきている
+    minimum_q_count = -1
+    minimum_q_id = -1
+    # 出題回数が少ない順に表示する
+    for id in id_list:
+        num_of_q =  questions.get_by_id(id).number_of_question
+        if minimum_q_count == -1 or num_of_q < minimum_q_count:
+            minimum_q_count = num_of_q
+            minimum_q_id = id
+    # random_num = random.randint(0, len(id_list) - 1)
+    if minimum_q_id == -1:
+        abort(404)
+    target = questions.get_by_id(minimum_q_id)
     current_count = target.number_of_question
     q = (Question.update({Question.number_of_question:current_count + 1})
          .where(Question.id==int(target.id)))
@@ -122,7 +160,9 @@ def test():
             print("target"+str(correct_id))
     return render_template(
     'test.html',
-    target = target
+    target = target,
+    current_selected_chapter = str(test_info.get_sec()),
+    test_mode = test_info.get_mode()
     )
 
 @app.route("/download", methods=["GET"])

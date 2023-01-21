@@ -19,13 +19,28 @@
     var app = new Vue({
         el:'#app',
         data:{
-            toggle: true
+            toggle: true,
+            checked: [true,true,true,true,true,
+                        true,true,true,true,true,
+                        true,true,true,true,true,
+                        true,true,true,true,true]
         },
         methods:{
             toggleBtn: function(){
                 this.toggle == true ? this.toggle = false : this.toggle = true
-            }
+            },
+            AllChoise: function(){
+                for(let i=0; i<20; i++){
+                    this.checked[i] = true
+                }
+            },
+            AllRelease: function(){
+                for(let i=0; i<20; i++){
+                    this.checked[i] = false
+                }
+            },
         }
-    })</script>
+    })
+    </script>
 </body>
 </html>

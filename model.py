@@ -23,5 +23,14 @@ class Question(Model):
     the_number_of_correct_answers = IntegerField(null=False)
     comment = TextField()
 
+    @classmethod
+    def get_specific_chapter(cls, chapter_num):
+        try:
+            return cls.select().where(
+                cls.chapter == chapter_num
+            )
+        except:
+            return None
+
     class Meta:
         database = db
