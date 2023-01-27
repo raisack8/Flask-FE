@@ -5,15 +5,16 @@
     <hr>
     <form action="#" method="post">
         {% if test_mode == "用語→説明" %}
-            <p>Q.</p>
+            <span class="border border-warning p-1">Q.</span>
             <p>{{ target.keyword }}</p>
             <hr>
             <div v-if="toggle">
-                <img src="../resource/secretBox.png" width="360" height="120" v-on:click="toggleBtn">
+                <img src="../resource/secretBox.png" v-on:click="toggleBtn"
+                class="img-fluid">
             </div>
             <section v-else>
                 <div>
-                    <p>A.</p>
+                    <span class="border border-danger p-1">A.</span>
                     <p>{{ target.explain }}</p>
                     <p>コメント：{{ target.comment }}</p>
                     <button type="summit" name="correct" value="{{target.id}}">正解</button>
@@ -21,7 +22,7 @@
                 </div>
             </section>
         {% else %}
-            <p>Q.</p>
+            <span class="border border-warning p-1">Q.</span>
             <p>{{ target.explain }}</p>
             <hr>
             <div v-if="toggle">
@@ -29,16 +30,20 @@
             </div>
             <section v-else>
                 <div>
-                    <p>A.</p>
+                    <span class="border border-danger p-1">A.</span>
                     <p>{{ target.keyword }}</p>
                     <p>コメント：{{ target.comment }}</p>
-                    <button type="summit" name="correct" value="{{target.id}}">正解</button>
-                    <button type="summit" name="incorrect" value="{{target.id}}">不正解</button>
+                    <button type="summit" name="correct" value="{{target.id}}"
+                    class="btn btn-danger px-4">正解</button>
+                    <button type="summit" name="incorrect" value="{{target.id}}"
+                    class="btn btn-primary px-4">不正解</button>
                 </div>
             </section>
         {% endif %}
     </form>
 
-    <a href="{{ url_for('top') }}">トップへ戻る</a>
+    <a href="{{ url_for('top') }}"
+    class="btn btn-outline-primary p-1 my-3">トップへ戻る</a>
+    <hr>
     <p>現在選択している章　: {{current_selected_chapter}}</p>
 {% endblock %}

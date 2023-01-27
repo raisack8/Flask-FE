@@ -2,9 +2,13 @@
 {% block contents %}
     <h1>問題一覧</h1>
     <hr>
-    <a href="{{ url_for('top') }}">トップへ戻る</a>
-    <a href="{{ url_for('registration') }}">登録</a>
-    <a href="{{ url_for('download_api') }}">DBダウンロード</a>
+    <a href="{{ url_for('top') }}"
+    class="btn btn-outline-primary p-1">トップへ戻る</a>
+    <a href="{{ url_for('registration') }}"
+    class="btn btn-outline-primary p-1">登録</a>
+    <a href="{{ url_for('download_api') }}"
+    class="btn btn-primary p-1">DBダウンロード</a>
+    <div class="p-2"></div>
     <form action="#" method="post">
         <table border="1" class="table table-bordered">
             <thead>
@@ -24,8 +28,10 @@
             {% for question in questions %}
             <tbody>
                 <tr>
-                    <th><button type="summit" name="edit" value="{{question.id}}">編集</button></th>
-                    <th><button type="summit" name="delete" value="{{question.id}}">削除</button></th>
+                    <th><button type="summit" name="edit" value="{{question.id}}"
+                        class="btn btn-primary p-1">編集</button></th>
+                    <th><button type="summit" name="delete" value="{{question.id}}"
+                        class="btn btn-primary p-1">削除</button></th>
                     <th>{{question.id}}</th>
                     <th>{{question.chapter}}</th>
                     <th>{{question.keyword}}</th>
@@ -39,6 +45,8 @@
             </tbody>
         </table>
     </form>
-    <a href="{{ url_for('top') }}">トップへ戻る</a>
-    <a href="{{ url_for('registration') }}">登録</a>
+    <a href="{{ url_for('top') }}"
+    class="btn btn-outline-primary p-1">トップへ戻る</a>
+    <a href="{{ url_for('registration') }}"
+    class="btn btn-outline-primary p-1">登録</a>
 {% endblock %}

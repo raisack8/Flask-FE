@@ -8,15 +8,22 @@
             <label for="scales">一問一答</label>
         </div>
         <div class="mb-3">
-            <button name="chenge_mode" value="chenge_mode">
+            <button name="chenge_mode" value="chenge_mode"
+            class="btn btn-outline-secondary">
                 {{ test_mode }}
             </button>
         </div>
         <div class="mb-3">
             <details>
-                <summary>試験範囲選択</summary>
-                <label v-on:click="AllChoise">全選択</label>
-                <label v-on:click="AllRelease">全解除</label>
+                <summary>
+                    <span class="border border-dark rounded p-1">試験範囲選択</span>
+                </summary>
+                <div class="py-2">
+                    <label v-on:click="AllChoise"
+                    class="btn btn-dark">全選択</label>
+                    <label v-on:click="AllRelease"
+                    class="btn btn-secondary">全解除</label>
+                </div>
                 {% for i in range(0,20) %}
                 <div>
                     <input type="checkbox"
@@ -28,10 +35,23 @@
                 {% endfor %}
             </details>
         </div>
-        <button type="submit" name="start_btn" value="start">Start</button>
+        <!-- <button type="submit" name="start_btn" value="start">Start</button> -->
     </form>
-    <a href="{{url_for('test')}}">Start</a>
-    <a href="{{url_for('registration')}}">登録</a>
-    <a href="{{url_for('q_list')}}">一覧</a>
-    <p><small>参照DB:{{ dbStr }}</small></p>
+    <div class="mt-2">
+        <a href="{{url_for('test')}}"
+            class="btn btn-primary px-5">
+            Start
+        </a>
+        <a href="{{url_for('registration')}}"
+        class="btn btn-outline-primary p-1">
+            登録
+        </a>
+        <a href="{{url_for('q_list')}}"
+        class="btn btn-outline-primary p-1">
+
+            一覧
+        </a>
+        <hr>
+        <p><small>参照DB:{{ dbStr }}</small></p>
+    </div>
 {% endblock %}

@@ -4,10 +4,12 @@
     <hr>
     <form action="#" method="post">
         <p>用語：<br>
-            <input type="text" name="keyword" size="15" value="{{question.keyword}}"></p>
+            <input type="text" name="keyword" size="15" value="{{question.keyword}}"
+            style="width:300px;"></p>
 
             <p>説明：<br>
-            <textarea name="explain">{{question.explain}}</textarea >
+            <textarea name="explain" rows="7"
+            style="width:300px;">{{question.explain}}</textarea >
 
             <p>章選択：
             <select name="chapter" size="1">
@@ -16,13 +18,18 @@
                 <option value="{{ loop.index }}">{{ loop.index }}</option>
                 {% endfor %}
             </select>
-            現在選択値 : {{question.chapter}}
+            <br>現在選択値 : {{question.chapter}}
 
             <p>その他：<br>
-            <textarea name="comment">{{question.comment}}</textarea >
+            <textarea name="comment" rows="7"
+            style="width:300px;">{{question.comment}}</textarea >
             </p>
-            <button type="summit" name="update" value="{{question.id}}">更新</button>
+            <button type="summit" name="update" value="{{question.id}}"
+            class="btn btn-primary px-5">更新</button>
     </form>
-    <a href="{{ url_for('q_list') }}">戻る</a>
-    <a href="{{ url_for('top') }}">トップへ戻る</a>
+    <br>
+    <a href="{{ url_for('q_list') }}"
+    class="btn btn-outline-primary">戻る</a>
+    <a href="{{ url_for('top') }}"
+    class="btn btn-outline-primary">トップへ戻る</a>
 {% endblock %}

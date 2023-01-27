@@ -2,7 +2,12 @@
 {% block contents %}
     <h1>完了しました</h1>
     <hr>
-    <a href="{{ url_for('registration') }}">登録画面へ戻る</a>
-    <a href="{{ url_for('top') }}">トップへ戻る</a>
-    <a href="{{ url_for('q_list') }}">一覧</a>
+    <a href="{{ url_for('registration') }}"
+    class="btn btn-primary p-1">登録画面へ戻る</a>
+
+    <a href="{{ url_for('q_list') }}"
+    class="btn btn-outline-primary p-1">一覧</a>
+
+    <a href="{{ url_for('top') }}"
+    class="btn btn-outline-primary p-1">トップへ戻る</a>
 {% endblock %}

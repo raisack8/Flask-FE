@@ -4,13 +4,15 @@
     <hr>
     <form action="#" method="post">
         <p>用語：<br>
-        <input type="text" name="keyword" size="15" value="{{input_val_dict['keyword']}}" autofocus="True"></p>
+        <input type="text" name="keyword" size="15" value="{{input_val_dict['keyword']}}" autofocus="True"
+        style="width:300px;"></p>
         {% if error_flag['keyword'] %}
             ※入力してください
         {% endif %}
 
         <p>説明：<br>
-        <textarea name="explain" rows="7">{{input_val_dict['explain']}}</textarea >
+        <textarea name="explain" rows="7"
+        style="width:300px;">{{input_val_dict['explain']}}</textarea >
         {% if error_flag['explain'] %}
             ※入力してください
         {% endif %}
@@ -27,9 +29,12 @@
         {% endif %}
 
         <p>その他：<br>
-        <textarea name="comment" rows="7">{{input_val_dict['comment']}}</textarea >
+        <textarea name="comment" rows="7"
+        style="width:300px;">{{input_val_dict['comment']}}</textarea >
         </p>
-        <button type="summit">登録</button>
+        <button type="summit"
+        class="btn btn-primary px-5">登録</button>
     </form>
-    <a href="{{ url_for('top') }}">戻る</a>
+    <a href="{{ url_for('top') }}"
+    class="btn btn-outline-primary p-1 my-3">戻る</a>
 {% endblock %}
